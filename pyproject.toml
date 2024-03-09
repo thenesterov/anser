@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools == 69.1.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "anser"
+version = "0.0.1"
+description = "A small database migration tool"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.8"
+keywords = ["migrations", "alembic", "yoyo", "database"]
+maintainers = [
+  {name = "Ivan Nesterov", email = "thenesterov@proton.me"},
+  {name = "Ivan Kirpichnikov"}
+]
+
+[project.urls]
+Repository = "https://github.com/thenesterov/anser.git"
+Issues = "https://github.com/thenesterov/anser/issues"
