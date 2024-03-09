@@ -12,7 +12,7 @@ requires-python = ">=3.8"
 keywords = ["migrations", "alembic", "yoyo", "database"]
 maintainers = [
   {name = "Ivan Nesterov", email = "thenesterov@proton.me"},
-  {name = "Ivan Kirpichnikov"}
+  {name = "Ivan Kirpichnikov", email = "mmssvvvv570@gmail.com"}
 ]
 
 [project.urls]
