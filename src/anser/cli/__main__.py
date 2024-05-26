@@ -3,8 +3,8 @@ from pathlib import Path
 
 import click
 
-from src.anser.core.config import build_config
-from src.anser.core.init import init_anser
+from anser.core.config import build_config
+from anser.core.init import init_anser
 
 
 @click.group()

@@ -1,5 +1,5 @@
-from src.anser.core.config import AnserConfig
-from src.anser.core.meta_data_storage import AnserMetaDataStorage
+from anser.core.config import AnserConfig
+from anser.core.meta_data_storage import AnserMetaDataStorage
 
 
 class AnserMigration:

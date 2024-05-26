@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from src.anser.core.exceptions import DirectoryExistsException, FileExistsException
-from src.anser.core.schemas import CONFIG_SCHEMA, SETUP_FILE_SCHEMA, TEMPLATE_SCHEMA
+from anser.core.exceptions import DirectoryExistsException, FileExistsException
+from anser.core.schemas import CONFIG_SCHEMA, SETUP_FILE_SCHEMA, TEMPLATE_SCHEMA
 
 
 def create_config(path: Path) -> None:
