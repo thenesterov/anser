@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "anser"
-version = "0.0.1"
+version = "0.0.0.a0"
 description = "A small database migration tool"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -14,6 +14,9 @@ maintainers = [
   {name = "Ivan Nesterov", email = "thenesterov@proton.me"},
   {name = "Ivan Kirpichnikov", email = "mmssvvvv570@gmail.com"}
 ]
+
+[project.scripts]
+anser = 'anser.cli:cli'
 
 [project.urls]
 Repository = "https://github.com/thenesterov/anser.git"
