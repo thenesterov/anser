@@ -16,7 +16,7 @@ maintainers = [
 ]
 
 [project.scripts]
-anser = 'anser.cli:cli'
+anser = 'anser.cli.__main__:cli'
 
 [project.urls]
 Repository = "https://github.com/thenesterov/anser.git"
