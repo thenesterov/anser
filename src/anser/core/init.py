@@ -1,65 +1,47 @@
 from pathlib import Path
 
-from anser.core.exceptions import DirectoryExistsException, FileExistsException
-from anser.core.schemas import CONFIG_SCHEMA, SETUP_FILE_SCHEMA, TEMPLATE_SCHEMA
+
+def exists_file(path: Path) -> None:
+    if path.exists():
+        raise FileExistsError(path)
 
 
-def create_config(path: Path) -> None:
-    config_path = path / 'anser.toml'
-    if config_path.exists():
-        raise FileExistsException(config_path)
+class InitAnser:
+    def __init__(self, current_path: Path) -> None:
+        self._current_path = current_path
     
-    with config_path.open('x') as file:
-        file.write(
-            CONFIG_SCHEMA.format(
-                path_to_migrations=path / 'migrations',
-            ),
-        )
-    return None
-
-
-def create_template_j2(path: Path) -> None:
-    template_j2_path = path / 'template.j2'
-    if template_j2_path.exists():
-        raise FileExistsException(template_j2_path)
+    def _build_anser_directory_path(self) -> Path:
+        path = self._current_path / 'anser'
+        return path
     
-    with template_j2_path.open('x') as template:
-        template.write(TEMPLATE_SCHEMA)
-    return None
-
-
-def create_setup_file(path: Path) -> None:
-    setup_file_path = path / 'setup.py'
-    if setup_file_path.exists():
-        raise FileExistsException(setup_file_path)
+    def _create_anser_directory(self) -> None:
+        path = self._build_anser_directory_path()
+        exists_file(path)
+        path.mkdir()
     
-    with setup_file_path.open('x') as template:
-        template.write(SETUP_FILE_SCHEMA)
-    return None
-
-
-def create_migrations_directory(path: Path) -> None:
-    migrations_path = path / 'migrations'
-    if migrations_path.exists():
-        raise DirectoryExistsException(migrations_path)
+    def _create_config_file(self) -> None:
+        path = self._current_path / 'anser.toml'
+        exists_file(path)
+        path.open('x').close()
     
-    migrations_init_path = migrations_path / '__init__.py'
-    if migrations_path.exists():
-        raise FileExistsException(migrations_path)
+    def _create_migrations_directory(self) -> None:
+        path = self._build_anser_directory_path()
+        
+        migrations_directory_path = path / 'migrations'
+        exists_file(migrations_directory_path)
+        migrations_directory_path.mkdir()
+        
+        init_file_path = migrations_directory_path / '__init__.py'
+        exists_file(init_file_path)
+        init_file_path.open('x').close()
     
-    migrations_path.mkdir()
-    with open(migrations_init_path, 'x') as template:
-        pass
-    return None
-
-
-def init_anser(path: Path) -> None:
-    anser_path = path / 'anser'
-    if anser_path.exists():
-        raise DirectoryExistsException(anser_path)
-    anser_path.mkdir()
+    def _create_template_file(self) -> None:
+        path = self._build_anser_directory_path()
+        template_file_path = path / 'template.py.j2'
+        exists_file(template_file_path)
+        template_file_path.open('x').close()
     
-    create_config(path)
-    create_template_j2(anser_path)
-    create_setup_file(anser_path)
-    create_migrations_directory(anser_path)
+    def execute(self) -> None:
+        self._create_config_file()
+        self._create_anser_directory()
+        self._create_migrations_directory()

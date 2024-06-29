@@ -3,15 +3,15 @@ from typing import Protocol
 from uuid import UUID
 
 
-class AnserMetaDataStorage(Protocol):
+class MigrationIdStorage(Protocol):
     @abstractmethod
     def create(self) -> None:
         raise NotImplementedError
     
     @abstractmethod
-    def get_current_uuid(self) -> UUID | None:
+    def get_migration_id(self) -> UUID | None:
         raise NotImplementedError
     
     @abstractmethod
-    def set_current_uuid(self, current_uuid: UUID) -> None:
+    def set_migration_id(self, current_uuid: UUID) -> None:
         raise NotImplementedError

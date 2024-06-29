@@ -1,10 +1,11 @@
 import os
 from pathlib import Path
+from typing import Any
 
 import click
 
 from anser.core.config import build_config
-from anser.core.init import init_anser
+from anser.core.init import InitAnser
 
 
 @click.group()
@@ -15,8 +16,9 @@ def cli() -> None:
 @cli.command(name='init')
 @click.argument('path', required=False)
 def init(path: str | None = None) -> None:
-    init_anser(Path(os.path.abspath(path or os.getcwd())))
-    return None
+    path_ = Path(os.path.abspath(path or os.getcwd()))
+    init_anser = InitAnser(path_)
+    init_anser.execute()
 
 
 @cli.command(name='migration')
@@ -30,11 +32,11 @@ def migration(
         config_path = Path(os.path.abspath(os.getcwd())) / 'anser.toml'
     else:
         config_path = Path(config)
-    config = build_config(config_path)
+    config_ = build_config(config_path)
     return None
 
 
 @cli.command(name='migrate')
 @click.argument('action')
-def migrate(action) -> None:
+def migrate(action: Any) -> None:
     return None

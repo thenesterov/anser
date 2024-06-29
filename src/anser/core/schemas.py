@@ -24,8 +24,3 @@ def upgrade() -> None:
 def downgrade() -> None:
     pass
 '''
-
-SETUP_FILE_SCHEMA = '''\
-
-
-'''
